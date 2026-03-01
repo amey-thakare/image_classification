@@ -1,99 +1,133 @@
-# image_classification
 
-# Project Overview
-This project implements an automated banana quality grading system using Convolutional Neural Networks (CNN). The model classifies banana images into three categories:
 
-Grade_A
-Grade_B
-Grade_C
+---
 
-The system uses transfer learning with a pretrained ResNet18 architecture and includes proper training, validation, and test evaluation following research-grade methodology.
+#  Banana Quality Grading using CNN (ResNet18)
 
-# Key Features
- Transfer Learning using Pretrained ResNet18
+##  Project Overview
 
- Data Augmentation for better generalization
+This project implements an automated **banana quality grading system** using **Convolutional Neural Networks (CNNs)**. The model classifies banana images into three categories:
 
- Train / Validation / Test Split (70/15/15)
+* **Grade_A**
+* **Grade_B**
+* **Grade_C**
 
- Model Checkpointing (Best Validation Model Saved)
+The system uses **Transfer Learning with a pretrained ResNet18 model** and follows a research-grade methodology including proper dataset splitting, validation monitoring, and performance evaluation.
 
- Classification Report (Precision, Recall, F1-score)
+---
 
- Confusion Matrix Visualization
+##  Key Features
 
- Flask Web Deployment
+*  Transfer Learning using pretrained **ResNet18**
+*  Data Augmentation for improved generalization
+*  Train / Validation / Test Split (70 / 15 / 15)
+*  Model Checkpointing (Best validation model saved)
+*  Classification Report (Precision, Recall, F1-score)
+*  Confusion Matrix Visualization
+*  Flask-based Web Deployment
+*  Confidence Score Output
 
-# Model Architecture
-Base Model: ResNet18 (Pretrained on ImageNet)
+---
 
-Final Layer Modified for 3-class classification
+##  Model Architecture
 
-Loss Function: CrossEntropyLoss
+* **Base Model:** ResNet18 (Pretrained on ImageNet)
+* **Final Layer:** Modified for 3-class classification
+* **Loss Function:** CrossEntropyLoss
+* **Optimizer:** Adam (learning rate = 0.0001)
 
-Optimizer: Adam (lr = 0.0001)
+---
 
-# Dataset
-The dataset is organized as:
+##  Dataset Structure
 
+```
 dataset/
 │
 ├── Grade_A/
 ├── Grade_B/
 └── Grade_C/
-Total Images: ~600
-# Split:
+```
 
-70% Training
+* Total Images: ~600
+* Image Classes: 3
+* Dataset Split:
 
-15% Validation
+  * 70% Training
+  * 15% Validation
+  * 15% Test
 
-15% Test
+---
 
-# Final Performance (Test Set)
-Test Accuracy: 95%
+##  Final Performance (Test Set)
 
-Macro F1-Score: 0.94
+* **Test Accuracy:** 95%
+* **Macro F1-Score:** 0.94
+* Balanced precision and recall across all classes
+* Minor confusion observed between Grade_A and Grade_B
 
-Balanced precision and recall across all classes
+---
 
-Confusion matrix analysis shows strong performance, with minor confusion between Grade_A and Grade_B.
+##  Experimental Improvements
 
-# Experimental Improvements
-To improve model generalization:
+To improve model performance and generalization:
 
-Applied data augmentation:
+* Applied Data Augmentation:
 
-RandomHorizontalFlip
+  * RandomHorizontalFlip
+  * RandomRotation
+  * ColorJitter
+* Used Transfer Learning instead of training from scratch
+* Monitored validation accuracy to prevent overfitting
+* Saved best-performing validation model
 
-RandomRotation
+---
 
-ColorJitter
+##  How to Run
 
-Used transfer learning instead of training from scratch
+### 1️⃣ Install Dependencies
 
-Monitored validation accuracy to prevent overfitting
-
-🖥️ How to Run
-1️⃣ Install Dependencies
+```bash
 pip install torch torchvision flask pillow scikit-learn seaborn matplotlib
-2️⃣ Train the Model
+```
+
+---
+
+###  Train the Model
+
+```bash
 python train.py
+```
+
 This will:
 
-Train the model
+* Train the CNN model
+* Evaluate on validation & test sets
+* Save the best model as `banana_model.pth`
 
-Evaluate on validation & test sets
+---
 
-Save the best model as banana_model.pth
+### 3️ Run the Web Application
 
-3️⃣ Run the Web Application
+```bash
 python app.py
-Open in browser locally.
+```
 
-Upload an image to get prediction and confidence score.
+Then open your browser and navigate to:
 
-📂 Project Structure
+```
+http://127.0.0.1:5000/
+```
+
+Upload a banana image to receive:
+
+* Predicted Grade
+* Confidence Score
+
+---
+
+##  Project Structure
+
+```
 banana_project/
 │
 ├── dataset/                # Image dataset (not uploaded to GitHub)
@@ -103,3 +137,8 @@ banana_project/
 ├── app.py                  # Flask deployment
 ├── banana_model.pth        # Saved model (ignored in .gitignore)
 └── README.md
+```
+
+---
+
+tyle you want 👀
