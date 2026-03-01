@@ -141,4 +141,3 @@ banana_project/
 
 ---
 
-tyle you want 👀
